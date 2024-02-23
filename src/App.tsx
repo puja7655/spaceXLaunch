@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import LaunchList from './components/LaunchList';
 import LaunchDetails from './components/LaunchDetails'
+import ErrorPage from './components/ErrorPage'
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
         <div className="container mt-4">
           <Routes>
             <Route path="/launches/:launchId" element={<LaunchDetails />} />
+            <Route path="/launches" element={<ErrorPage />} />
             <Route path="/" element={<LaunchList />} />
           </Routes>
         </div>
