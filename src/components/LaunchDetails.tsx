@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getLaunches } from '../services/spaceXService';
 
-interface LaunchDetailsProps {
+export interface LaunchDetailsProps {
     launchId?: string;
+    name?:string;
+    details?: string;
+    status?:string;
 }
 
 const LaunchDetails: React.FC<LaunchDetailsProps> = ({ launchId }) => {
