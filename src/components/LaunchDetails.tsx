@@ -40,11 +40,11 @@ const LaunchDetails: React.FC<LaunchDetailsProps> = ({ launchId }) => {
                     <img src={launch.links.patch.small} alt={launch.name} className="img-fluid" />
                 </div>
                 <div className="col-md-6">
-                    <p><h4 className="list-group-item-heading">Details</h4></p>
+                    <h4 className="list-group-item-heading">Details</h4>
                     <p>{launch.details}</p>
-                    <p><h4 className="list-group-item-heading">Status</h4></p>
+                    <h4 className="list-group-item-heading">Status</h4>
                     <p>{launch.success ? 'Successful' : 'Failed'}</p>
-                    <p><h4 className="list-group-item-heading">Rocket</h4></p>
+                    <h4 className="list-group-item-heading">Rocket</h4>
                     <p>{launch.rocket}</p>
                 </div>
             </div>

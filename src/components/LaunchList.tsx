@@ -10,7 +10,7 @@ const LaunchList: React.FC = () => {
     const [hasMore, setHasMore] = useState<boolean>(true);
     const [offset, setOffset] = useState<number>(0);
     const [searchTerm, setSearchTerm] = useState<string>('');
-    const [debouncedSearchTerm] = useDebounce(searchTerm, 300); // Debounce search term by 300ms
+    const [debouncedSearchTerm] = useDebounce(searchTerm, 100); // Debounce search term by 300ms
 
 
     const fetchLaunches = async () => {
@@ -69,12 +69,16 @@ const LaunchList: React.FC = () => {
         <div className="row">
             <div className="col-md-8 offset-md-2">
                 <h2 className="mt-4 mb-3">SpaceX Launches</h2>
-                <input
-                    type="text"
-                    placeholder="Search launches..."
-                    value={searchTerm}
-                    onChange={handleSearchChange}
-                />
+                <div className="mb-3">
+                    <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Search launches..."
+                        value={searchTerm}
+                        onChange={handleSearchChange}
+                    />
+                </div>
+
                 <ul className="list-group">
                     {launches.map((launch: any, index: number) => (
                         <li
@@ -86,7 +90,10 @@ const LaunchList: React.FC = () => {
                                 className="text-dark text-decoration-none">
                                 <div className="pull-left">
                                     <h4 className="list-group-item-heading">{launch.name}</h4>
-                                    <p className="list-group-item-text">{launch.name}</p>
+                                   
+                                    <span className="list-group-item-text">Launch Date:</span>                            
+                                    <span>{new Date(launch.date_utc).toLocaleDateString()}</span>
+                                   
                                 </div>
                             </Link>
                         </li>
@@ -100,3 +107,5 @@ const LaunchList: React.FC = () => {
 };
 
 export default LaunchList;
+
+
