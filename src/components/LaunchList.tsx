@@ -22,8 +22,6 @@ const LaunchList: React.FC = () => {
             } else {
                 setLaunches((prevLaunches) => [...prevLaunches, ...data]);
                 setOffset((prevOffset) => prevOffset + data.length);
-                console.log("===launches", launches)
-                console.log("===offset", offset)
             }
         } catch (error) {
             console.error('Error fetching launches:', error);
@@ -54,6 +52,7 @@ const LaunchList: React.FC = () => {
         }
     };
 
+    //Handle infiite scroll
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
         return () => {
@@ -90,10 +89,10 @@ const LaunchList: React.FC = () => {
                                 className="text-dark text-decoration-none">
                                 <div className="pull-left">
                                     <h4 className="list-group-item-heading">{launch.name}</h4>
-                                   
-                                    <span className="list-group-item-text">Launch Date:</span>                            
+
+                                    <span className="list-group-item-text">Launch Date:</span>
                                     <span>{new Date(launch.date_utc).toLocaleDateString()}</span>
-                                   
+
                                 </div>
                             </Link>
                         </li>
