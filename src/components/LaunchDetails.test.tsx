@@ -1,27 +1,39 @@
-import React from 'react';
-import { render } from '@testing-library/react';
-import LaunchDetails, { LaunchDetailsProps } from './LaunchDetails';
+import { render, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import LaunchDetails from './LaunchDetails';
+import * as spaceXService from '../services/spaceXService';
 
-describe('LaunchDetails Component', () => {
+const mockedUseParams = jest.fn();
+jest.mock('react-router-dom', () => ({
+    useParams: () => mockedUseParams(),
+}));
 
-    xit('should render launch details', () => {
-        const launch: LaunchDetailsProps = {
-            launchId: '1',
-            name: 'Launch1',
-            details: 'Launch details',
-            status: 'Success',
-        };
+jest.mock('../services/spaceXService', () => ({
+    ...jest.requireActual('../services/spaceXService'),
+    getLaunches: jest.fn(),
+}));
 
-        const { getByText, getByAltText } = render(<LaunchDetails {...launch} />);
+describe('LaunchDetails component', () => {
+    it('renders loading message when launch is not loaded', async () => {
+        mockedUseParams.mockReturnValue({ launchId: 'exampleLaunchId' });
 
-        expect(getByText((content, element) => {
-            if (element !== null) {
-                return element.textContent === 'Launch1';
-            }
-            return false;
-        })).toBeInTheDocument();
-        expect(getByText('1/1/2023')).toBeInTheDocument();
-        expect(getByText('Launch details')).toBeInTheDocument();
-        expect(getByText('Success')).toBeInTheDocument();
+        (spaceXService.getLaunches as jest.Mock).mockResolvedValue([]);
+
+        const { getByText } = render(<LaunchDetails />);
+
+        expect(getByText('Loading...')).toBeInTheDocument();
+        await waitFor(() => { });
+    });
+
+    it('renders launch details when launch is loaded', async () => {
+        mockedUseParams.mockReturnValue({ launchId: 'exampleLaunchId' });
+
+        (spaceXService.getLaunches as jest.Mock).mockResolvedValue([]);
+
+        const { container } = render(<LaunchDetails />)
+        container.querySelector('.list-group-item-heading')
+        await waitFor(() => { });
+        expect(container.querySelector('.list-group-item-heading')).toBeDefined();
+        expect(container.firstChild).toMatchSnapshot()
     });
 });

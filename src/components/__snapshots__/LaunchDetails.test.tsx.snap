@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LaunchDetails component renders launch details when launch is loaded 1`] = `
+<div
+  class="container mt-4"
+>
+  <p>
+    Loading...
+  </p>
+</div>
+`;

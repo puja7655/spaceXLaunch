@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# SpaceX Launch Tracker
+
+SpaceX, a pioneer in aerospace since 2002, aims to make interplanetary living a reality. To access their mission data, SpaceX provides an open-source REST API. Our project, the SpaceX Launch Tracker, visualizes this data for users.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
