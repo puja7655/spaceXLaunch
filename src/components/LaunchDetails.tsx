@@ -44,7 +44,7 @@ const LaunchDetails: React.FC<LaunchDetailsProps> = ({ launchId }) => {
                 </div>
                 <div className="col-md-6">
                     <h4 className="list-group-item-heading">Details</h4>
-                    {launch.details}
+                    <p>{launch.details}</p>
                     <h4 className="list-group-item-heading">Status</h4>
                     <p>{launch.success ? 'Successful' : 'Failed'}</p>
                     <h4 className="list-group-item-heading">Rocket</h4>
