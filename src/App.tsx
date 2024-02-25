@@ -14,10 +14,10 @@ const App: React.FC = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <Link className="nav-link" to="/">Launch List</Link>
+                  <Link className="nav-link" to="/launches">Launch List</Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/launches">Launch Details</Link>
+                  <Link className="nav-link" to="/launcheDetail">Launch Details</Link>
                 </li>
               </ul>
             </div>
@@ -26,8 +26,9 @@ const App: React.FC = () => {
         <div className="container mt-4">
           <Routes>
             <Route path="/launches/:launchId" element={<LaunchDetails />} />
-            <Route path="/launches" element={<ErrorPage />} />
+            <Route path="/launcheDetail" element={<ErrorPage />} />
             <Route path="/" element={<LaunchList />} />
+            <Route path="/launches" element={<LaunchList />} />
           </Routes>
         </div>
       </div>
